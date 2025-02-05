@@ -7,9 +7,9 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.AllowAnyOrigin()   // מאפשר לכל דומיין לגשת
-              .AllowAnyMethod()   // מאפשר כל סוג של HTTP Method (GET, POST, PUT, DELETE)
-              .AllowAnyHeader();  // מאפשר כל כותרת HTTP (Headers)
+        policy.AllowAnyOrigin()   
+              .AllowAnyMethod()  
+              .AllowAnyHeader(); 
     });
 });
 builder.Services.AddDbContext<ToDoDbContext>(options =>
@@ -17,15 +17,12 @@ builder.Services.AddDbContext<ToDoDbContext>(options =>
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("ToDoDB"))));
 var app = builder.Build();
 app.UseCors("AllowAll");
-// builder.Services.AddEndpointsApiExplorer();
-// builder.Services.AddSwaggerGen();
-// // if (app.Environment.IsDevelopment())
-// // {
-//     app.UseSwagger();
-//     app.UseSwaggerUI();
-// // }
 
-app.MapGet("/", () => "Hello World!");
+   app.UseSwagger();
+   app.UseSwaggerUI();
+
+
+app.MapGet("/", () => "auth server is running now:)");
 app.MapGet("/api/tasks", async (ToDoDbContext dbContext) =>
 {
     var tasks = await dbContext.Items.ToListAsync();
