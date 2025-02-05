@@ -18,7 +18,7 @@ export default {
 
   setCompleted: async(id, isComplete)=>{
     console.log('setCompleted', {id, isComplete})
-    const result = await axios.put(`${config.apiUrl}/api/tasks/${id}`,{id,isComplete})    
+    const result = await axios.put(`${config.apiUrl}/api/tasks/${id}`,{IsComplete: isComplete})    
     return result.data;
   },
 
