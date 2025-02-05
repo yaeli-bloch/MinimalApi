@@ -1,14 +1,13 @@
 import axios from 'axios';
+import config from './config';
 
 //const apiUrl = "http://localhost:5000"
 
-export default {
-  
+export default {  
   getTasks: async () => {
     const result1 = await axios.get(`${config.apiUrl}/api/tasks`)    
     return result1.data;
   },
-
   addTask: async(name)=>{  
     const currentSecond= new Date().getSeconds();
     console.log('addTask', name)
