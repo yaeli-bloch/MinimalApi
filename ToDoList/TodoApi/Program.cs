@@ -82,6 +82,8 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader();
     });
 });
+var app = builder.Build();
+app.UseCors("AllowAll");
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer(); // זו תוספת חשובה עבור Swagger
 builder.Services.AddSwaggerGen();
@@ -102,10 +104,10 @@ builder.Services.AddDbContext<ToDoDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("ToDoDB"),
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("ToDoDB"))));
 
-var app = builder.Build();
+
 
 // הפעלת CORS
-app.UseCors("AllowAll");
+
 
 // הפעלת Swagger ו-Swagger UI רק בסביבת פיתוח
 // if (app.Environment.IsDevelopment())
