@@ -15,7 +15,6 @@ export default {
     const result= await axios.post(`${apiUrl}/api/tasks`,
       {Id:currentSecond,Name:name,IsComplete:false})
       return result.data;
-    // return {};
   },
 
   setCompleted: async(id, isComplete)=>{
