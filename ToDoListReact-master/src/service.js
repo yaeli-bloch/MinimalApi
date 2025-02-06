@@ -21,15 +21,19 @@ export default {
   //   const result = await axios.put(`${config.apiUrl}/api/tasks/${id}`,{IsComplete: isComplete})    
   //   return result.data;
   // },
-  setCompleted: async(id, isComplete) => {
-    console.log('setCompleted', {id, isComplete})
-    const result = await axios.put(`${config.apiUrl}/api/tasks/${id}`, 
-      { IsComplete: isComplete }, 
-      { headers: { 'Content-Type': 'application/json' } }
-    );    
+  // setCompleted: async(id, isComplete) => {
+  //   console.log('setCompleted', {id, isComplete})
+  //   const result = await axios.put(`${config.apiUrl}/api/tasks/${id}`, 
+  //     { IsComplete: isComplete }, 
+  //     { headers: { 'Content-Type': 'application/json' } }
+  //   );    
+  //   return result.data;
+  // },
+  setCompleted: async (id, isComplete) => {
+    console.log('setCompleted', { id, isComplete });
+    const result = await axios.put(`/tasks/${id}`, {isComplete: isComplete} );
     return result.data;
   },
-  
   deleteTask:async(id)=>{
     console.log('deleteTask')
     const result= await axios.delete(`${config.apiUrl}/api/tasks/${id}`,id)

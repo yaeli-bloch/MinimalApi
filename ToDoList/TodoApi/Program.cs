@@ -81,21 +81,26 @@ app.MapPost("/api/tasks", async (ToDoDbContext dbContext, Item newTask) =>
 
 //     return Results.Ok(existingItem);
 // });
-app.MapPut("/api/tasks/{id}", async (ToDoDbContext dbContext, int id, [FromBody] bool IsComplete) =>
+// app.MapPut("/api/tasks/{id}", async (ToDoDbContext dbContext, int id, [FromBody] bool IsComplete) =>
+// {
+//     var existingItem = await dbContext.Items.FindAsync(id);
+
+//     if (existingItem == null)
+//     {
+//         return Results.NotFound();
+//     }
+
+//     existingItem.IsComplete = IsComplete;
+//     await dbContext.SaveChangesAsync();
+
+//     return Results.Ok(existingItem);
+// });
+app.MapPost("/tasks", async (ToDoDbContext context, Item newTask) =>
 {
-    var existingItem = await dbContext.Items.FindAsync(id);
-
-    if (existingItem == null)
-    {
-        return Results.NotFound();
-    }
-
-    existingItem.IsComplete = IsComplete;
-    await dbContext.SaveChangesAsync();
-
-    return Results.Ok(existingItem);
+    context.Items.Add(newTask);
+    await context.SaveChangesAsync();
+    return Results.Created($"/tasks/{newTask.Id}", newTask);
 });
-
 
 // מחיקת משימה
 app.MapDelete("/api/tasks/{id}", async (ToDoDbContext dbContext, int id) =>
