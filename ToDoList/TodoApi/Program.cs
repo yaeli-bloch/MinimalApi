@@ -65,7 +65,7 @@ app.MapPost("/api/tasks", async (ToDoDbContext dbContext, Item newTask) =>
     await dbContext.SaveChangesAsync();
     return Results.Created($"/api/tasks/{newTask.Id}", newTask);
 });
-app.MapPut("/api/tasks/{id}", async (ToDoDbContext dbContext, int id, bool IsComplete) =>
+app.MapPut("/api/tasks/{id}", async (ToDoDbContext dbContext, int id, [FromBody]bool IsComplete) =>
 {
 
     var existingItem = await dbContext.Items.FindAsync(id);
