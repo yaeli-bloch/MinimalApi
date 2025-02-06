@@ -10,7 +10,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins("https://minimalapi-jsdk.onrender.com")  // הוספת הכתובת שלך
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
