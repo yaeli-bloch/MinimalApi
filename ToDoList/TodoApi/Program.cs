@@ -77,7 +77,6 @@ app.MapPut("/api/items/{id}", async (ToDoDbContext dbContext, int id, bool IsCom
 
     existingItem.IsComplete = IsComplete;
     await dbContext.SaveChangesAsync();
-
     return Results.Ok(existingItem);
 
 });
