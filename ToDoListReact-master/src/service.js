@@ -17,7 +17,7 @@ export default {
   }, 
   setCompleted: async (id, isComplete) => {
     console.log('setCompleted', { id, isComplete });
-    const result = await axios.put(`/tasks/${id}`, {IsComplete: isComplete} );
+    const result = await axios.put(`/tasks/${id}`, {isComplete: isComplete} );
     return result.data;
   },
   deleteTask:async(id)=>{
