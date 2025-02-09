@@ -4,7 +4,7 @@ import axios from 'axios';
 const app = express();
 const PORT = process.env.PORT || 3000;
 // ה-API Key שלך (שימי כאן את המפתח שלך)
-const API_KEY = 'rnd_v55BuGfAR7LCHZMJ3eKuGJ0ndTgK';
+const API_KEY = 'rnd_wHQAOSawLsZD5AeQgbB8jB5MhJgv';
 
 // הגדרת ה-Endpoint
 app.get('/', async (req, res) => {
